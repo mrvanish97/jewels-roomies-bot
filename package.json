@@ -1,0 +1,23 @@
+{
+  "name": "jewels-roomies-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uonagent/jewels-roomies-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uonagent/jewels-roomies-bot/issues"
+  },
+  "homepage": "https://github.com/uonagent/jewels-roomies-bot#readme",
+  "dependencies": {
+    "telegraf": "^3.29.0"
+  }
+}
