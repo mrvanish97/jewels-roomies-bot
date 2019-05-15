@@ -6,6 +6,6 @@ bot.hears(new RegExp('[\\?&]' + 'Максим' + '=([^&#]*)', 'i'), ({ reply }) 
 bot.command('joke', ({
   reply,
   message
-}) => reply(`${message.from.sender === 'Neksus_5' ? 'ТЫ' : 'МАКСИМ'} ПАНК`))
+}) => reply(`${message.from.username === 'Neksus_5' ? 'ТЫ' : 'МАКСИМ'} ПАНК`))
 bot.start(({ reply }) => reply('Hi'))
 bot.launch()
