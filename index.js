@@ -5,7 +5,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.hears(new RegExp('[\\?&]' + 'Максим' + '=([^&#]*)', 'i'), ({ reply }) => reply('ПАНК'))
 bot.command('joke', ({
   reply,
-  from
-}) => reply(`${from.sender === 'Neksus_5' ? 'ТЫ' : 'МАКСИМ'} ПАНК`))
+  message
+}) => reply(`${message.from.sender === 'Neksus_5' ? 'ТЫ' : 'МАКСИМ'} ПАНК`))
 bot.start(({ reply }) => reply('Hi'))
 bot.launch()
