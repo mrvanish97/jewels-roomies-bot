@@ -1,7 +1,5 @@
 const Telegraf = require('telegraf')
 
-let lastWord
-
 const russianVowels = [
   'а',
   'и',
@@ -11,7 +9,7 @@ const russianVowels = [
   'я',
   'ы',
   'ё',
-  'e',
+  'е',
   'ю',
 ]
 
@@ -24,7 +22,7 @@ const convertVowel = vowel => {
     case 'э':
       return 'Хуэ'
     case 'у':
-      return 'Хуэ'
+      return 'Хую'
     default:
       return `Ху${vowel}`
   }
@@ -44,16 +42,37 @@ const convertWord = word => {
   }
 }
 
-const makeHui = string => string
-  .split(' ')
-  .map(convertWord)
-  .join(' ')
+const makeHui = string => {
+  const sentence = string.split(' ')
+  const lastWord = sentence[sentence.length - 1]
+  return convertWord(lastWord)
+}
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
+const lastWordByChat = {}
+
+bot.context.db = {
+  getLastMessageTextByChatId: id => lastWordByChat[id],
+  setLastMessageTextByChatId: (id, text) => lastWordByChat[id] = text
+}
+
 bot.start(({ reply }) => reply('Hi'))
-bot.hears(/^/, ({ message }) => {
-  lastWord = message
+
+bot.command('hui', async ({ reply, db, message }) => {
+    reply(makeHui(db.getLastMessageTextByChatId(message.chat.id) || 'й'))
 })
-bot.command('hui', ({ reply }) => lastWord && reply(makeHui(lastWord)))
-bot.launch() 
+
+/* bot.hears(/^/, ({ message }) => {
+  lastWord = message.text
+  console.log(lastWord)
+}) */
+
+bot.on('text', async ({ message, db }) => {
+  db.setLastMessageTextByChatId(message.chat.id, message.text)
+})
+
+bot.launch()
+
+
+//console.log(makeHui('Привет сосать'))
