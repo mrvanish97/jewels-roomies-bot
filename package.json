@@ -19,5 +19,8 @@
   "homepage": "https://github.com/uonagent/jewels-roomies-bot#readme",
   "dependencies": {
     "telegraf": "^3.29.0"
+  },
+  "engines": {
+    "node": "11.x"
   }
 }
