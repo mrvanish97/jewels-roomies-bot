@@ -21,4 +21,5 @@ module.exports = (bot) => {
     bot.processUpdate(req.body);
     res.sendStatus(200);
   });
+  app.use(bot.webhookCallback(process.env.HEROKU_URL))
 };

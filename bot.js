@@ -6,7 +6,7 @@ let bot
 
 if(process.env.NODE_ENV === 'production') {
   bot = new Bot(token)
-  bot.telegram.setWebHook(process.env.HEROKU_URL + bot.token)
+  bot.telegram.setWebhook(process.env.HEROKU_URL + bot.token)
 }
 else {
   bot = new Bot(token, { polling: true })
@@ -39,4 +39,6 @@ bot.on('text', async ({ message, db }) => {
 
 bot.launch()
 
-module.exports = bot;
+module.exports = {
+  bot
+}
