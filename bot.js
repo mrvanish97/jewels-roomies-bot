@@ -1,4 +1,4 @@
-const token = process.env.TOKEN
+const token = process.env.BOT_TOKEN
 
 const Bot = require('telegraf')
 const { makeHui } = require('./make-hui')
