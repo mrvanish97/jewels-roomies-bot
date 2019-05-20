@@ -41,7 +41,8 @@ const convertWord = word => {
 }
 
 const makeHui = string => {
-  const sentence = string.split(' ')
+  const word = string || 'й'
+  const sentence = word.split(' ')
   const lastWord = sentence[sentence.length - 1]
   return convertWord(lastWord)
 }
